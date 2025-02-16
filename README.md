@@ -15,14 +15,6 @@ A command-line tool for generating XML sitemaps by crawling websites. The crawle
 ## Installation
 
 ### macOS
-
-#### Using Homebrew (Recommended)
-```bash
-brew tap ncecere/tools
-brew install mapper
-```
-
-#### Manual Installation
 1. Download the latest release for macOS:
    ```bash
    # For Apple Silicon (M1/M2)
