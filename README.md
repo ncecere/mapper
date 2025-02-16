@@ -12,6 +12,82 @@ A command-line tool for generating XML sitemaps by crawling websites. The crawle
 - XML sitemap generation following the sitemap protocol
 - Support for lastmod dates, change frequency, and priority
 
+## Installation
+
+### macOS
+
+#### Using Homebrew (Recommended)
+```bash
+brew tap ncecere/tools
+brew install mapper
+```
+
+#### Manual Installation
+1. Download the latest release for macOS:
+   ```bash
+   # For Apple Silicon (M1/M2)
+   curl -LO "https://github.com/ncecere/mapper/releases/latest/download/mapper_Darwin_arm64.tar.gz"
+   # For Intel Macs
+   curl -LO "https://github.com/ncecere/mapper/releases/latest/download/mapper_Darwin_x86_64.tar.gz"
+   ```
+
+2. Extract the archive:
+   ```bash
+   tar xzf mapper_Darwin_*.tar.gz
+   ```
+
+3. Make the binary executable and move it to your PATH:
+   ```bash
+   chmod +x mapper
+   sudo mv mapper /usr/local/bin/
+   ```
+
+### Linux
+
+1. Download the latest release for your architecture:
+   ```bash
+   # For 64-bit AMD/Intel (most common)
+   curl -LO "https://github.com/ncecere/mapper/releases/latest/download/mapper_Linux_x86_64.tar.gz"
+   # For ARM64
+   curl -LO "https://github.com/ncecere/mapper/releases/latest/download/mapper_Linux_arm64.tar.gz"
+   ```
+
+2. Extract the archive:
+   ```bash
+   tar xzf mapper_Linux_*.tar.gz
+   ```
+
+3. Make the binary executable and move it to your PATH:
+   ```bash
+   chmod +x mapper
+   sudo mv mapper /usr/local/bin/
+   ```
+
+### Windows
+
+1. Download the latest release from the [releases page](https://github.com/ncecere/mapper/releases/latest)
+   - Choose `mapper_Windows_x86_64.zip` for 64-bit Windows
+
+2. Extract the ZIP file using File Explorer or PowerShell:
+   ```powershell
+   Expand-Archive -Path mapper_Windows_x86_64.zip -DestinationPath C:\mapper
+   ```
+
+3. Add to PATH:
+   - Open Start Menu and search for "Environment Variables"
+   - Click "Edit the system environment variables"
+   - Click "Environment Variables" button
+   - Under "System Variables", find and select "Path"
+   - Click "Edit"
+   - Click "New"
+   - Add `C:\mapper`
+   - Click "OK" on all windows
+
+4. Verify installation (open a new PowerShell window):
+   ```powershell
+   mapper --version
+   ```
+
 ## Project Structure
 
 ```
