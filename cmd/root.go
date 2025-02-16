@@ -46,7 +46,7 @@ func init() {
 	// Set default values
 	viper.SetDefault("debug", false)
 	viper.SetDefault("log_level", "info")
-	viper.SetDefault("user_agent", "Mapper/1.0 (+https://github.com/bitop-dev/mapper)")
+	viper.SetDefault("user_agent", "Mapper/1.0 (+https://github.com/ncecere/mapper)")
 	viper.SetDefault("concurrent_requests", 5)
 	viper.SetDefault("request_timeout", "10s")
 	viper.SetDefault("rate_limit", "1s")

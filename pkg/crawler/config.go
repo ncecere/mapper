@@ -52,7 +52,7 @@ func DefaultConfig(baseURL string) (*Config, error) {
 		MaxConcurrent:   5,
 		RequestTimeout:  10 * time.Second,
 		RateLimit:       time.Second,
-		UserAgent:       "Mapper/1.0 (+https://github.com/bitop-dev/mapper)",
+		UserAgent:       "Mapper/1.0 (+https://github.com/ncecere/mapper)",
 		FollowRedirects: true,
 	}, nil
 }

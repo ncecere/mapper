@@ -9,9 +9,9 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/bitop-dev/mapper/pkg/crawler"
-	"github.com/bitop-dev/mapper/pkg/sitemap"
-	"github.com/bitop-dev/mapper/pkg/ui"
+	"github.com/ncecere/mapper/pkg/crawler"
+	"github.com/ncecere/mapper/pkg/sitemap"
+	"github.com/ncecere/mapper/pkg/ui"
 	"github.com/spf13/cobra"
 )
 

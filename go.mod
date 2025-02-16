@@ -1,4 +1,4 @@
-module github.com/bitop-dev/mapper
+module github.com/ncecere/mapper
 
 go 1.24.0
 

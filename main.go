@@ -1,6 +1,6 @@
 package main
 
-import "github.com/bitop-dev/mapper/cmd"
+import "github.com/ncecere/mapper/cmd"
 
 func main() {
 	cmd.Execute()

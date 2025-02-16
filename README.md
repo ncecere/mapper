@@ -43,7 +43,7 @@ mapper/
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/bitop-dev/mapper.git
+   git clone https://github.com/ncecere/mapper.git
    cd mapper
    ```
 
