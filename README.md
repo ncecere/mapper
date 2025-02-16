@@ -7,59 +7,119 @@ A command-line tool for generating XML sitemaps by crawling websites. The crawle
 - Concurrent web crawling with configurable limits
 - Domain-scoped crawling (stays within the same domain)
 - Rate limiting to prevent server overload
-- Progress visualization with real-time statistics
+- Simple progress display with real-time statistics
 - Configurable crawl depth and concurrency
 - XML sitemap generation following the sitemap protocol
 - Support for lastmod dates, change frequency, and priority
 
-## Installation
+## Project Structure
 
-```bash
-go install github.com/bitop-dev/mapper@latest
+```
+mapper/
+├── cmd/                    # Command line interface
+│   ├── root.go            # Root command setup
+│   └── generate.go        # Generate command implementation
+├── pkg/
+│   ├── crawler/           # Web crawler package
+│   │   ├── config.go      # Crawler configuration
+│   │   ├── crawler.go     # Core crawler implementation
+│   │   ├── page.go        # Page processing
+│   │   ├── queue.go       # URL queue management
+│   │   └── validator.go   # URL validation
+│   ├── sitemap/           # Sitemap generation
+│   │   ├── builder.go     # Sitemap construction
+│   │   ├── types.go       # Data structures
+│   │   └── writer.go      # XML output
+│   └── ui/                # User interface
+│       └── progress.go    # Progress display
+├── .gitignore             # Git ignore patterns
+├── go.mod                 # Go module definition
+├── go.sum                 # Go module checksums
+├── main.go                # Application entry point
+└── README.md             # Project documentation
 ```
 
-Or clone and build from source:
+## Development Setup
 
-```bash
-git clone https://github.com/bitop-dev/mapper.git
-cd mapper
-go build
-```
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/bitop-dev/mapper.git
+   cd mapper
+   ```
 
-## Usage
+2. Install dependencies:
+   ```bash
+   go mod download
+   ```
 
-Basic usage:
+3. Build the project:
+   ```bash
+   go build
+   ```
+
+## Git Workflow
+
+1. Create a new branch for your changes:
+   ```bash
+   git checkout -b feature/your-feature
+   ```
+
+2. Make your changes and commit them:
+   ```bash
+   git add .
+   git commit -m "Description of your changes"
+   ```
+
+3. Push your changes:
+   ```bash
+   git push origin feature/your-feature
+   ```
+
+## Usage Examples
+
+### Basic Usage
+
+Generate a sitemap for a website:
 ```bash
 mapper generate https://example.com
 ```
 
-With options:
-```bash
-mapper generate \
-  --depth 3 \
-  --concurrent 5 \
-  --rate-limit 500ms \
-  --output sitemap.xml \
-  https://example.com
-```
+### Advanced Options
 
-### Available Options
+1. Control crawling depth and concurrency:
+   ```bash
+   mapper generate \
+     --depth 3 \
+     --concurrent 5 \
+     https://example.com
+   ```
 
-- `--depth, -d`: Maximum crawl depth (default: 3)
-- `--output, -o`: Output file path (default: sitemap.xml)
-- `--concurrent, -c`: Maximum concurrent requests (default: 5)
-- `--timeout, -t`: Request timeout (default: 10s)
-- `--rate-limit, -r`: Rate limit between requests (default: 1s)
-- `--exclude, -e`: Paths to exclude (e.g., /admin/*)
-- `--no-follow-redirects`: Don't follow redirects
-- `--strip-query`: Strip query parameters from URLs (default: true)
-- `--user-agent`: Custom User-Agent string
-- `--debug`: Enable debug mode
-- `--config`: Config file path (default: $HOME/.mapper.yaml)
+2. Configure rate limiting:
+   ```bash
+   mapper generate \
+     --rate-limit 500ms \
+     --timeout 10s \
+     https://example.com
+   ```
+
+3. Exclude specific paths:
+   ```bash
+   mapper generate \
+     --exclude "/admin/*" \
+     --exclude "/private/*" \
+     https://example.com
+   ```
+
+4. Custom output location:
+   ```bash
+   mapper generate \
+     --output /path/to/sitemap.xml \
+     https://example.com
+   ```
 
 ### Configuration File
 
-You can create a configuration file at `~/.mapper.yaml` with default settings:
+Create a `~/.mapper.yaml` file for default settings:
 
 ```yaml
 concurrent_requests: 5
@@ -69,7 +129,9 @@ user_agent: "Mapper/1.0"
 debug: false
 ```
 
-## Example Output
+## Output Format
+
+The generated sitemap follows the [Sitemap Protocol](https://www.sitemaps.org/protocol.html):
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -80,24 +142,39 @@ debug: false
     <changefreq>weekly</changefreq>
     <priority>0.5</priority>
   </url>
-  ...
 </urlset>
 ```
 
-## Development
+## Design Principles
 
-The project follows standard Go project layout:
+1. **Modularity**: Each package has a specific responsibility:
+   - `crawler`: Handles web crawling and URL management
+   - `sitemap`: Manages sitemap generation and XML output
+   - `ui`: Handles user interface and progress display
 
-- `cmd/`: Command line interface
-- `pkg/crawler/`: Core crawling logic
-- `pkg/sitemap/`: Sitemap generation
-- `pkg/ui/`: Terminal UI components
+2. **Configuration**: Flexible configuration through:
+   - Command-line flags
+   - Configuration file
+   - Environment variables
 
-### Building from Source
+3. **Error Handling**: Comprehensive error handling with:
+   - Detailed error messages
+   - Debug mode for troubleshooting
+   - Proper cleanup on interruption
 
-1. Clone the repository
-2. Install dependencies: `go mod download`
-3. Build: `go build`
+4. **Performance**: Efficient operation through:
+   - Concurrent crawling
+   - Rate limiting
+   - Memory-efficient URL queue
+   - Duplicate URL detection
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
 ## License
 
